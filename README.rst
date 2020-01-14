@@ -60,3 +60,13 @@ Rules and configuration details
 Here is the `latest documented configuration file <https://raw.githubusercontent.com/sequana/sequana_revcomp/master/sequana_pipelines/revcomp/config.yaml>`_
 to be used with the pipeline. Each rule used in the pipeline may have a section in the configuration file. 
 
+
+Changelog
+~~~~~~~~~
+
+========= ============================================
+Version   Description
+========= ============================================
+0.8.1     Improve the --help message
+0.8.0     First version from sequana 0.8.0
+========= ============================================

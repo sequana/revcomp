@@ -31,7 +31,8 @@ class Options(argparse.ArgumentParser):
 
         """
         )
-        super(Options, self).__init__(usage=usage, prog=prog, description="")
+        super(Options, self).__init__(usage=usage, prog=prog, description="",
+            formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
         # add a new group of options to the parser
         so = SlurmOptions()
@@ -47,10 +48,6 @@ class Options(argparse.ArgumentParser):
         so = GeneralOptions()
         so.add_options(self)
 
-        #pipeline_group = self.add_argument_group("pipeline")
-
-        #pipeline_group.add_argument("--TODO", dest="TODO", default=4, type=int)
-        
 
 def main(args=None):
 
