@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 # License: 3-clause BSD
-__revision__ = "$Id: $" # for the SVN Id
 from setuptools import setup, find_namespace_packages
 
 _MAJOR               = 0
 _MINOR               = 8
-_MICRO               = 1
+_MICRO               = 2
 version              = '%d.%d.%d' % (_MAJOR, _MINOR, _MICRO)
 release              = '%d.%d' % (_MAJOR, _MINOR)
 
@@ -16,7 +15,7 @@ metainfo = {
     'url' : "https://github.com/sequana/",
     'description': "reverse complement a set of FastQ files" ,
     'platforms' : ['Linux', 'Unix', 'MacOsX', 'Windows'],
-    'keywords' : ['fastq, reverse complement, snakemake, NGS'],
+    'keywords' : ['fastq, reverse complement, snakemake, NGS', "sequana"],
     'classifiers' : [
           'Development Status :: 5 - Production/Stable',
           'Intended Audience :: Education',
