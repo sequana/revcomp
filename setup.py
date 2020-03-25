@@ -66,7 +66,8 @@ setup(
     zip_safe=False,
 
     entry_points = {'console_scripts':[
-        'sequana_pipelines_revcomp=sequana_pipelines.revcomp.main:main'],
+        'sequana_pipelines_revcomp=sequana_pipelines.revcomp.main:main',
+        'sequana_revcomp=sequana_pipelines.revcomp.main:main'],
     }
 
 )

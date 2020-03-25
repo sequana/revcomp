@@ -1,12 +1,8 @@
-"""Multi fastqc pipeline
+"""reverse complement sequana pipeline
 
-Author: Rachel Legendre
-Affiliation: Institut Pasteur @ 2019
+Affiliation: Institut Pasteur @ 2019-2020
 
 This pipeline is part of Sequana software (sequana.readthedocs.io)
-
-snakemake -s revcomp.rules --forceall --stats stats.txt --cores 4
-
 
 """
 from sequana import snaketools as sm
@@ -28,23 +24,19 @@ def sample_func(filename):
 manager = sm.PipelineManagerGeneric("revcomp", config, sample_func)
 
 rule pipeline:
-    input: expand('{sample}.rc.fastq.gz', sample=list(manager.samples.keys()))
+    input: expand('rc/{sample}.fastq.gz', sample=list(manager.samples.keys()))
 
 
 ## Revcomp rule
 __revcomp__input = manager.getrawdata()
 __revcomp__logs = "logs/{sample}.logs"
-__revcomp__output = "{sample}.rc.fastq.gz"
+__revcomp__output = "rc/{sample}.fastq.gz"
 include: sm.modules['revcomp_rule']
 
 
 onsuccess:
     from sequana.snaketools import OnSuccessCleaner
-    sc = OnSuccessCleaner()
-    sc.files_to_remove.append("revcomp.rules")
-    sc.files_to_remove.append("config.yaml")
-    sc.files_to_remove.append("schema.yaml")
-    sc.files_to_remove.append("revcomp.sh")
+    sc = OnSuccessCleaner("revcomp")
     sc.directories_to_remove.append("logs")
     sc.add_makefile()
     print("Once done, please clean up the directory using\n'make clean'")
