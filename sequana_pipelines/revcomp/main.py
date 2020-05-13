@@ -37,25 +37,36 @@ class Options(argparse.ArgumentParser):
         pipeline_group.add_argument('--threads', dest="threads",
             type=int, default=4)
 
+    def parse_args(self, *args):
+        args_list = list(*args)
+        if "--from-project" in args_list:
+            if len(args_list)>2:
+                msg = "WARNING [sequana]: With --from-project option, " + \
+                        "pipeline and data-related options will be ignored."
+                print(col.error(msg))
+            for action in self._actions:
+                if action.required is True:
+                    action.required = False
+        options = super(Options, self).parse_args(*args)
+        return options
+
+
 
 def main(args=None):
+
     if args is None:
         args = sys.argv
 
     # whatever needs to be called by all pipeline before the options parsing
-    from sequana_pipetools.options import init_pipeline
-    init_pipeline(NAME)
+    from sequana_pipetools.options import before_pipeline
+    before_pipeline(NAME)
 
     # option parsing including common epilog
     options = Options(NAME, epilog=sequana_epilog).parse_args(args[1:])
 
-    from sequana.snaketools import Module
-    m = Module(NAME)
-    m.is_executable()
 
-    from sequana import logger
     from sequana.pipelines_common import SequanaManager
-    logger.level = options.level
+
     # the real stuff is here
     manager = SequanaManager(options, NAME)
 

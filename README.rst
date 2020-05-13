@@ -68,6 +68,7 @@ Changelog
 ========= ======================================================================
 Version   Description
 ========= ======================================================================
+0.8.4     * implemented --from-project option
 0.8.3     * Uses new sequana framework to spee up --help calls
           * --threads option
 0.8.2     Fix schema and rule. output files are now saved in the ./rc directory
