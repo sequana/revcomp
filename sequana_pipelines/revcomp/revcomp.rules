@@ -29,17 +29,15 @@ rule pipeline:
 
 ## Revcomp rule
 __revcomp__input = manager.getrawdata()
-__revcomp__logs = "logs/{sample}.logs"
+__revcomp__logs = temp("logs/{sample}.logs")
 __revcomp__output = "rc/{sample}.fastq.gz"
 include: sm.modules['revcomp_rule']
 
 
 onsuccess:
-    from sequana.snaketools import OnSuccessCleaner
-    sc = OnSuccessCleaner("revcomp")
-    sc.directories_to_remove.append("logs")
-    sc.add_makefile()
-    print("Once done, please clean up the directory using\n'make clean'")
+    from sequana import logger
+    logger.level = "INFO"
+    manager.teardown(extra_dirs_to_remove=['logs'])
 
 onerror:
     print("An error occurred. See message above.")

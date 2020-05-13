@@ -68,6 +68,8 @@ Changelog
 ========= ======================================================================
 Version   Description
 ========= ======================================================================
+0.8.3     * Uses new sequana framework to spee up --help calls
+          * --threads option
 0.8.2     Fix schema and rule. output files are now saved in the ./rc directory
 0.8.1     Improve the --help message
 0.8.0     First version from sequana 0.8.0

@@ -2,38 +2,22 @@ import sys
 import os
 import argparse
 
-from sequana.pipelines_common import *
-from sequana.snaketools import Module
-from sequana import logger
-logger.level = "INFO"
+from sequana_pipetools.options import *
+from sequana_pipetools.misc import Colors
+from sequana_pipetools.info import sequana_epilog, sequana_prolog
 
 col = Colors()
 
 NAME = "revcomp"
-m = Module(NAME)
-m.is_executable()
 
 
 class Options(argparse.ArgumentParser):
-    def __init__(self, prog=NAME):
-        usage = col.purple(
-            """This script prepares the sequana pipeline revcomp layout to
-            include the Snakemake pipeline and its configuration file ready to
-            use.
-
-            In practice, it copies the config file and the pipeline into a
-            directory (revcomp) together with an executable script
-
-            For a local run, use :
-
-                sequana_pipelines_revcomp --input-directory PATH_TO_DATA 
-
-
-        """
-        )
+    def __init__(self, prog=NAME, epilog=None):
+        usage = col.purple(sequana_prolog.format(**{"name": NAME}))
         super(Options, self).__init__(usage=usage, prog=prog, description="",
-            formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
+            epilog=epilog,
+            formatter_class=argparse.ArgumentDefaultsHelpFormatter
+        )
         # add a new group of options to the parser
         so = SlurmOptions()
         so.add_options(self)
@@ -48,22 +32,44 @@ class Options(argparse.ArgumentParser):
         so = GeneralOptions()
         so.add_options(self)
 
+        pipeline_group = self.add_argument_group("pipeline")
+
+        pipeline_group.add_argument('--threads', dest="threads",
+            type=int, default=4)
+
 
 def main(args=None):
-
     if args is None:
         args = sys.argv
 
-    options = Options(NAME).parse_args(args[1:])
+    # whatever needs to be called by all pipeline before the options parsing
+    from sequana_pipetools.options import init_pipeline
+    init_pipeline(NAME)
 
-    manager = PipelineManager(options, NAME)
+    # option parsing including common epilog
+    options = Options(NAME, epilog=sequana_epilog).parse_args(args[1:])
+
+    from sequana.snaketools import Module
+    m = Module(NAME)
+    m.is_executable()
+
+    from sequana import logger
+    from sequana.pipelines_common import SequanaManager
+    logger.level = options.level
+    # the real stuff is here
+    manager = SequanaManager(options, NAME)
 
     # create the beginning of the command and the working directory
     manager.setup()
 
     # fill the config file with input parameters
-    cfg = manager.config.config
-    cfg.input_directory = os.path.abspath(options.input_directory)
+    if options.from_project is None:
+        cfg = manager.config.config
+        cfg.input_pattern = options.input_pattern
+        cfg.input_readtag = options.input_readtag
+        cfg.input_directory = os.path.abspath(options.input_directory)
+        cfg.revcomp.threads = options.threads
+        manager.exists(cfg.input_directory)
 
     # finalise the command and save it; copy the snakemake. update the config
     # file and save it.
