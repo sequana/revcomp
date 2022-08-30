@@ -5,7 +5,7 @@ Affiliation: Institut Pasteur @ 2019-2020
 This pipeline is part of Sequana software (sequana.readthedocs.io)
 
 """
-from sequana import snaketools as sm
+from sequana_pipetools import PipelineManager
 
 
 # This must be defined before the include
@@ -21,18 +21,28 @@ def sample_func(filename):
     return filename
 
 
-manager = sm.PipelineManagerGeneric("revcomp", config, sample_func)
+manager = PipelineManager("revcomp", config, sample_func=sample_func)
 
 rule pipeline:
     input: expand('rc/{sample}.fastq.gz', sample=list(manager.samples.keys()))
 
 
-## Revcomp rule
-__revcomp__input = manager.getrawdata()
-__revcomp__logs = temp("logs/{sample}.logs")
-__revcomp__output = "rc/{sample}.fastq.gz"
-include: sm.modules['revcomp_rule']
-
+rule revcomp:
+    input:
+        manager.getrawdata()
+    output:
+        "rc/{sample}.fastq.gz"
+    log:
+        temp("logs/{sample}.logs")
+    container:
+        "https://zenodo.org/record/5729951/files/seqtk_1.3.0.img" 
+    shell:
+        """
+        # -k means keep original data
+        # the container does not contain pigz.
+        #seqtk seq -r  {input}  | pigz -p {threads} -fk - --stdout > {output}  2> {log}
+        seqtk seq -r  {input}  | gzip -fk -c > {output}  2> {log}
+        """
 
 onsuccess:
     from sequana import logger

@@ -1,15 +1,12 @@
-import easydev
 import os
 import tempfile
 import subprocess
 import sys
 
 
-sequana_path = easydev.get_package_location('sequana_revcomp')
-sharedir = os.sep.join([sequana_path , "sequana_pipelines", 'revcomp', 'data'])
+from . import test_dir
+sharedir = f"{test_dir}/data"
 
-
-# 
 def test_standalone_subprocess():
     directory = tempfile.TemporaryDirectory()
     cmd = "sequana_pipelines_revcomp --input-directory {} "
@@ -29,7 +26,6 @@ def test_standalone_script():
 def test_full():
 
     with tempfile.TemporaryDirectory() as directory:
-        print(directory)
         wk = directory
         cmd = "sequana_pipelines_revcomp --input-directory {} "
         cmd += "--working-directory {} --force"
