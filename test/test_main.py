@@ -9,7 +9,7 @@ sharedir = f"{test_dir}/data"
 
 def test_standalone_subprocess():
     directory = tempfile.TemporaryDirectory()
-    cmd = "sequana_pipelines_revcomp --input-directory {} "
+    cmd = "sequana_revcomp --input-directory {} "
     cmd += "--working-directory {} --force"
     cmd = cmd.format(sharedir, directory.name)
     subprocess.call(cmd.split())
@@ -27,7 +27,7 @@ def test_full():
 
     with tempfile.TemporaryDirectory() as directory:
         wk = directory
-        cmd = "sequana_pipelines_revcomp --input-directory {} "
+        cmd = "sequana_revcomp --input-directory {} "
         cmd += "--working-directory {} --force"
         cmd = cmd.format(sharedir, wk)
         subprocess.call(cmd.split())
@@ -35,5 +35,5 @@ def test_full():
 
 
 def test_version():
-    cmd = "sequana_pipelines_revcomp --version"
+    cmd = "sequana_revcomp --version"
     subprocess.call(cmd.split())
