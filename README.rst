@@ -22,16 +22,6 @@ This is is the **revcomp** pipeline from the `Sequana <https://sequana.readthedo
 
 
 
-This is is the **fastqc** pipeline from the `Sequana <https://sequana.readthedocs.org>`_ projet
-
-:Overview: Runs fastqc and multiqc on a set of Sequencing data to produce control quality reports
-:Input: A set of FastQ files (paired or single-end) compressed or not
-:Output: an HTML file summary.html (individual fastqc reports, mutli-samples report)
-:Status: production
-:Wiki: https://github.com/sequana/fastqc/wiki
-:Documentation: This README file, the Wiki from the github repository (link above) and https://sequana.readthedocs.io
-:Citation: Cokelaer et al, (2017), 'Sequana': a Set of Snakemake NGS pipelines, Journal of Open Source Software, 2(16), 352, JOSS DOI https://doi:10.21105/joss.00352
-
 
 Installation
 ~~~~~~~~~~~~
@@ -93,6 +83,7 @@ Changelog
 ========= ======================================================================
 Version   Description
 ========= ======================================================================
+0.9.0     * set singularity container
 0.8.4     * implemented --from-project option
 0.8.3     * Uses new sequana framework to spee up --help calls
           * --threads option
