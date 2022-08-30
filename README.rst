@@ -1,11 +1,36 @@
+
+.. image:: https://badge.fury.io/py/sequana-fastqc.svg
+     :target: https://pypi.python.org/pypi/sequana_fastqc
+
+.. image:: http://joss.theoj.org/papers/10.21105/joss.00352/status.svg
+    :target: http://joss.theoj.org/papers/10.21105/joss.00352
+    :alt: JOSS (journal of open source software) DOI
+
+.. image:: https://github.com/sequana/fastqc/actions/workflows/main.yml/badge.svg
+   :target: https://github.com/sequana/fastqc/actions/workflows    
+
+
+
 This is is the **revcomp** pipeline from the `Sequana <https://sequana.readthedocs.org>`_ projet
 
-:Overview: Simply reverse complement a bunch of fastq files
-:Input: fastq files
-:Output: their reverse complement counterpart
+:Overview: revert and complement input Fast fiels
+:Input: A set of FastQ files (paired or single-end) compressed or not
+:Output: A set of reverse completed files
 :Status: production
 :Citation: Cokelaer et al, (2017), ‘Sequana’: a Set of Snakemake NGS pipelines, Journal of Open Source Software, 2(16), 352, JOSS DOI doi:10.21105/joss.00352
 :Authors: Thomas Cokelaer
+
+
+
+This is is the **fastqc** pipeline from the `Sequana <https://sequana.readthedocs.org>`_ projet
+
+:Overview: Runs fastqc and multiqc on a set of Sequencing data to produce control quality reports
+:Input: A set of FastQ files (paired or single-end) compressed or not
+:Output: an HTML file summary.html (individual fastqc reports, mutli-samples report)
+:Status: production
+:Wiki: https://github.com/sequana/fastqc/wiki
+:Documentation: This README file, the Wiki from the github repository (link above) and https://sequana.readthedocs.io
+:Citation: Cokelaer et al, (2017), 'Sequana': a Set of Snakemake NGS pipelines, Journal of Open Source Software, 2(16), 352, JOSS DOI https://doi:10.21105/joss.00352
 
 
 Installation
