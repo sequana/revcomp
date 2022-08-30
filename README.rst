@@ -39,7 +39,7 @@ retrieve the pipeline itself and its configuration files and then execute the pi
 
     snakemake -s revcomp.rules -c config.yaml --cores 4 --stats stats.txt
 
-Or use `sequanix <https://sequana.readthedocs.io/en/master/sequanix.html>`_ interface.
+Or use `sequanix <https://sequana.readthedocs.io/en/main/sequanix.html>`_ interface.
 
 Requirements
 ~~~~~~~~~~~~
@@ -58,7 +58,7 @@ This pipeline runs **seqtk** in parallel on the input fastq files.
 Rules and configuration details
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Here is the `latest documented configuration file <https://raw.githubusercontent.com/sequana/sequana_revcomp/master/sequana_pipelines/revcomp/config.yaml>`_
+Here is the `latest documented configuration file <https://raw.githubusercontent.com/sequana/sequana_revcomp/main/sequana_pipelines/revcomp/config.yaml>`_
 to be used with the pipeline. Each rule used in the pipeline may have a section in the configuration file. 
 
 
