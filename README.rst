@@ -1,19 +1,19 @@
 
-.. image:: https://badge.fury.io/py/sequana-fastqc.svg
-     :target: https://pypi.python.org/pypi/sequana_fastqc
+.. image:: https://badge.fury.io/py/sequana-revcomp.svg
+     :target: https://pypi.python.org/pypi/sequana_revcomp
 
 .. image:: http://joss.theoj.org/papers/10.21105/joss.00352/status.svg
     :target: http://joss.theoj.org/papers/10.21105/joss.00352
     :alt: JOSS (journal of open source software) DOI
 
-.. image:: https://github.com/sequana/fastqc/actions/workflows/main.yml/badge.svg
-   :target: https://github.com/sequana/fastqc/actions/workflows    
+.. image:: https://github.com/sequana/revcomp/actions/workflows/main.yml/badge.svg
+   :target: https://github.com/sequana/revcomp/actions/workflows    
 
 
 
 This is is the **revcomp** pipeline from the `Sequana <https://sequana.readthedocs.org>`_ projet
 
-:Overview: revert and complement input Fast fiels
+:Overview: revert and complement input Fast files
 :Input: A set of FastQ files (paired or single-end) compressed or not
 :Output: A set of reverse completed files
 :Status: production
