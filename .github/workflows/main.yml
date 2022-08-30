@@ -52,7 +52,7 @@ jobs:
 
     - name: testing
       run: |
-        pytest -v --cov-report term-missing --cov=sequana_pipelines.rnaseq
+        pytest -v --cov-report term-missing --cov=sequana_pipelines.revcomp
 
     - name: coveralls
       run: |

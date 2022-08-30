@@ -69,8 +69,7 @@ setup(
     classifiers      = metainfo['classifiers'],
 
     # package installation
-    packages = ["sequana_pipelines.revcomp",
-        'sequana_pipelines.revcomp.data' ],
+    packages = ["sequana_pipelines.revcomp"],
 
     install_requires = open("requirements.txt").read(),
 
