@@ -12,6 +12,9 @@ input_directory: ''
 input_readtag: _R[12]_
 input_pattern: '*.fastq.gz'
 
+apptainers:
+  seqtk: "https://zenodo.org/record/5729951/files/seqtk_1.3.0.img" 
+
 
 ##############################################################################
 # Revcomp section

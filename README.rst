@@ -10,6 +10,9 @@
    :target: https://github.com/sequana/revcomp/actions/workflows    
 
 
+.. image:: https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C3.10-blue.svg
+    :target: https://pypi.python.org/pypi/sequana
+    :alt: Python 3.8 | 3.9 | 3.10
 
 This is is the **revcomp** pipeline from the `Sequana <https://sequana.readthedocs.org>`_ projet
 
@@ -18,7 +21,7 @@ This is is the **revcomp** pipeline from the `Sequana <https://sequana.readthedo
 :Output: A set of reverse completed files
 :Status: production
 :Citation: Cokelaer et al, (2017), ‘Sequana’: a Set of Snakemake NGS pipelines, Journal of Open Source Software, 2(16), 352, JOSS DOI doi:10.21105/joss.00352
-:Authors: Thomas Cokelaer
+
 
 
 
@@ -26,21 +29,16 @@ This is is the **revcomp** pipeline from the `Sequana <https://sequana.readthedo
 Installation
 ~~~~~~~~~~~~
 
-You must install Sequana first::
+If you already have all requirements, you can install the packages using pip::
 
-    pip install sequana
-
-Then, just install this package::
-
-    pip install sequana_revcomp
-
+    pip install sequana_mapper --upgrade
 
 Usage
 ~~~~~
 
 ::
 
-    sequana_pipelines_revcomp --input-directory DATAPATH 
+    sequana_revcomp --input-directory DATAPATH 
 
 This creates a directory with the pipeline and configuration file. You will then need 
 to execute the pipeline::
@@ -52,7 +50,8 @@ to execute the pipeline::
 This launch a snakemake pipeline. If you are familiar with snakemake, you can 
 retrieve the pipeline itself and its configuration files and then execute the pipeline yourself with specific parameters::
 
-    snakemake -s revcomp.rules -c config.yaml --cores 4 --stats stats.txt
+    snakemake -s revcomp.rules -c config.yaml --cores 4 \
+        --wrapper-prefix https://raw.githubusercontent.com/sequana/sequana-wrappers/
 
 Or use `sequanix <https://sequana.readthedocs.io/en/main/sequanix.html>`_ interface.
 
