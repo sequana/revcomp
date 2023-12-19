@@ -1,11 +1,15 @@
 import os
-import tempfile
 import subprocess
-import sys
+import tempfile
 
+from click.testing import CliRunner
+
+from sequana_pipelines.revcomp.main import main
 
 from . import test_dir
+
 sharedir = f"{test_dir}/data"
+
 
 def test_standalone_subprocess():
     directory = tempfile.TemporaryDirectory()
@@ -15,12 +19,13 @@ def test_standalone_subprocess():
     subprocess.call(cmd.split())
 
 
-def test_standalone_script():
-    directory = tempfile.TemporaryDirectory()
-    import sequana_pipelines.revcomp.main as m
-    sys.argv = ["test", "--input-directory", sharedir, "--working-directory",
-        directory.name, "--force"]
-    m.main()
+def test_standalone_script(tmpdir):
+
+    wkdir = tmpdir.mkdir("wkdir")
+    args = ["--input-directory", sharedir, "--working-directory", wkdir, "--force"]
+    runner = CliRunner()
+    results = runner.invoke(main, args)
+    assert results.exit_code == 0
 
 
 def test_full():
