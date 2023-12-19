@@ -45,9 +45,7 @@ rule revcomp:
         """
 
 onsuccess:
-    from sequana import logger
-    logger.level = "INFO"
     manager.teardown(extra_dirs_to_remove=['logs'])
 
 onerror:
-    print("An error occurred. See message above.")
+    manager.onerror()
