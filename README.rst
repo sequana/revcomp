@@ -10,9 +10,9 @@
    :target: https://github.com/sequana/revcomp/actions/workflows
 
 
-.. image:: https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C3.10-blue.svg
+.. image:: https://img.shields.io/badge/python-3.11%20%7C%203.12-blue.svg
     :target: https://pypi.python.org/pypi/sequana
-    :alt: Python 3.8 | 3.9 | 3.10
+    :alt: Python 3.11 | 3.12
 
 This is is the **revcomp** pipeline from the `Sequana <https://sequana.readthedocs.org>`_ projet
 
@@ -46,16 +46,9 @@ This creates a directory with the pipeline and configuration file. You will then
 to execute the pipeline::
 
     cd revcomp
-    sh revcomp.sh  # for a local run
-    make clean
+    bash revcomp.sh  # for a local run
 
-This launch a snakemake pipeline. If you are familiar with snakemake, you can
-retrieve the pipeline itself and its configuration files and then execute the pipeline yourself with specific parameters::
-
-    snakemake -s revcomp.rules -c config.yaml --cores 4 \
-        --wrapper-prefix https://raw.githubusercontent.com/sequana/sequana-wrappers/
-
-Or use `sequanix <https://sequana.readthedocs.io/en/main/sequanix.html>`_ interface.
+This launches a snakemake pipeline.
 
 Requirements
 ~~~~~~~~~~~~
@@ -84,6 +77,9 @@ Changelog
 ========= ======================================================================
 Version   Description
 ========= ======================================================================
+1.2.0     * migrated to modern sequana layout (poetry, rich_click, no
+            click_completion, seqtk shell call -- no sequana_wrappers)
+1.1.0     * set apptainer container
 0.9.0     * set singularity container
 0.8.4     * implemented --from-project option
 0.8.3     * Uses new sequana framework to spee up --help calls

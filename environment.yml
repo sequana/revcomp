@@ -1,13 +1,10 @@
-name: mapper
-
+name: revcomp
 channels:
-  - conda-forge
-  - bioconda
-  - defaults
-
+- conda-forge
+- bioconda
+- defaults
 dependencies:
-  - seqtk
-  - pip:
-    - sequana
-
-
+- seqtk
+- pulp>=2.8
+- pip:
+  - sequana

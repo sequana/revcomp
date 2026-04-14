@@ -18,7 +18,6 @@ import shutil
 import subprocess
 import sys
 
-import click_completion
 import rich_click as click
 from sequana_pipetools import SequanaManager
 from sequana_pipetools.options import *

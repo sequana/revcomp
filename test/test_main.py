@@ -36,7 +36,7 @@ def test_full():
         cmd += "--working-directory {} --force"
         cmd = cmd.format(sharedir, wk)
         subprocess.call(cmd.split())
-        stat = subprocess.call("sh revcomp.sh".split(), cwd=wk)
+        stat = subprocess.call("bash revcomp.sh".split(), cwd=wk)
 
 
 def test_version():
